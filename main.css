@@ -68,7 +68,7 @@ header nav a {
 }
 
 #masthead {
-  height: 50vh;
+  height: 30vh;
   background-image: url("images/seals.jpg");
   background-size: cover;
   position: relative;
