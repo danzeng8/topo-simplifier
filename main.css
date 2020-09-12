@@ -19,9 +19,8 @@ header {
   left: 0;
   padding: 15px 20px 20px 20px;
   position: fixed;
-  top: 50;
   width: 100%;
-  z-index: 2;
+  z-index: -2;
 }
 
 header a {
@@ -68,7 +67,7 @@ header nav a {
 }
 
 #masthead {
-  height: 100vh;
+  height: 50vh;
   background-image: url("images/seals.jpg");
   background-size: cover;
   position: relative;
