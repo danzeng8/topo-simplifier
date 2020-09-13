@@ -47,26 +47,35 @@
         <div class="column" style="background-color:#FFC0C0;">
           <div class="w3-container">
             <div class="mySlides w3-display-container slideAlign">
-              <img src="images/assignment2.png" style="height:450px; margin:auto;">
-              <div class="w3-display-bottomleft w3-container w3-padding-16 w3-black">
-                French Alps
+              <img src="images/hipS.png" style="height:450px; margin:auto; float: left;">
+              <h2 style ="display: inline; text-align: center; ">Given a 3D shape with topological features...</h2>
+              <button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
+            <button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
               </div>
             </div>
             <div class="mySlides w3-display-container slideAlign">
-              <img src="images/assignment3.png" style="height:450px; margin:auto;">
-              <div class="w3-display-bottomleft w3-container w3-padding-16 w3-black">
-                French Alps
-              </div>
+              <img src="images/hipAllCutsAndFills.png" style="height:450px; margin:auto; float: left;">
+              <h2 style ="display: inline; text-align: center; ">...We first compute a set of cuts and fills which simplify the topology...</h2>
+              <button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
+            <button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
             </div>
              <div class="mySlides w3-display-container slideAlign">
-              <img src="images/assignment4.png" style="height:450px; margin:auto;">
-               <div class="w3-display-bottomleft w3-container w3-padding-16 w3-black">
-                French Alps
-              </div>
+              <img src="images/hipSelectedCutsAndFills.png" style="height:450px; margin:auto; float: left;">
+              <h2 style ="display: inline; padding-left: 20 px; text-align: center; ">...Then select the subset which most simplifies topology, while minimizing a geometric score. </h2>
+              <button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
+            <button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
             </div>
+            <div class="mySlides w3-display-container slideAlign">
+              <img src="images/hipResult.png" style="height:450px; margin:auto; float: left;">
+              <h2 style ="display: inline; text-align: center; ">...Then select the subset which most simplifies topology, while minimizing a geometric score.</h2>
+              <button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
+            <button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
+            </div>
+            
           </div>
           <script>
             var myIndex = 0;
+            var slideIndex = 1;
             carousel();
 
             function carousel() {
@@ -75,13 +84,28 @@
               for (i = 0; i < x.length; i++) {
                 x[i].style.display = "none";  
               }
-              myIndex++;
+              myIndex++; slideIndex++;
               if (myIndex > x.length) {myIndex = 1}    
               x[myIndex-1].style.display = "block";  
               setTimeout(carousel, 5000); // Change image every 2 seconds
             }
+
+            function plusDivs(n) {
+              showDivs(slideIndex += n);
+            }
+
+            function showDivs(n) {
+              var i;
+              var x = document.getElementsByClassName("mySlides");
+              if (n > x.length) {slideIndex = 1}
+              if (n < 1) {slideIndex = x.length}
+              for (i = 0; i < x.length; i++) {
+                 x[i].style.display = "none";  
+              }
+              x[slideIndex-1].style.display = "block";  
+            }
+
           </script>
-          <p>Some text..</p>
         </div>
        
 
@@ -89,7 +113,7 @@
     </section>
      
     <section id='paper'>
-      <h2>Recent Projects</h2>
+      <h2>Paper</h2>
       <h3>Gorgon</h3>
       <p>
         I developed the interface for pathwalking in <a href="https://github.com/GorgonCryoEM">Gorgon</a>. Pathwalking is an algorithm which uses a traveling salesman heuristic to predict the likeliest path of a protein backbone. My interface runs the algorithm on a panel without using the command line, and allows the user to prevent or add bonds, set termini, move or delete atoms, and identify secondary structures after pathwalking.
