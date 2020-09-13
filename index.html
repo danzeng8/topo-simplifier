@@ -21,7 +21,7 @@
       <a href='#paper'>Paper</a>
       <a href="https://github.com/danzeng8/TopoSimplifier">Code</a>
       <a href='#examples'>Examples</a>
-      <a href='#faq'>Other Info / FAQ</a>
+      <a href='#faq'>FAQ</a>
       <a href='#contact'>Contact</a>
     </nav>
   </header>
@@ -68,8 +68,6 @@
                 <div class="text">...to produce a simplified shape. </div>
               </div>
 
-              <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-              <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
             </div>
 
@@ -86,33 +84,23 @@
 
           <script>
           var slideIndex = 0;
-          showSlides(slideIndex);
+          showSlides();
 
-          function plusSlides(n) {
-            showSlides(slideIndex += n);
-          }
-
-          function currentSlide(n) {
-            showSlides(slideIndex = n);
-          }
-
-          function showSlides(n) {
+          function showSlides() {
             var i;
             var slides = document.getElementsByClassName("mySlides");
             var dots = document.getElementsByClassName("dot");
-            if (n > slides.length) {slideIndex = 1}    
-            if (n < 1) {slideIndex = slides.length}
             for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";  
+              slides[i].style.display = "none";  
             }
             slideIndex++;
-            if (slideIndex > slides.length) {slideIndex = 1}  
+            if (slideIndex > slides.length) {slideIndex = 1}    
             for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active", "");
+              dots[i].className = dots[i].className.replace(" active", "");
             }
             slides[slideIndex-1].style.display = "block";  
             dots[slideIndex-1].className += " active";
-            setTimeout(showSlides, 6000); 
+            setTimeout(showSlides, 6000); // Change image every 2 seconds
           }
           </script>
         </div>
@@ -123,17 +111,48 @@
      <br><br><br>
     <section id = 'examples' style="background-color: rgba(255, 192, 192, 0.8); opacity: 1; margin: 0px 100px 0 100px; height: 40%; border-radius: 20px; float: center;">
       <br>
-      <br>
-      <br>
-      <h2>Examples</h2>
-      <p>
-        Some interesting visualizations I did for my Information Visualization course
+      <h1>Examples</h1>
+      <p style="text-align: left;">
+        Provided here are the examples used in figures of the paper, as well as a few others. We have applied our algorithm to simplify shapes coming from a variety of domains in both geometry modeling and biomedical and plant imaging. In each case the topology of the input shape and simplified shape are provided, as well as the command needed to reproduce the result (see <a href="https://github.com/danzeng8/TopoSimplifier">code</a>). Our algorithm is flexible to the types of cuts and fills used for simplification: we demonstrate here distance-based, intensity-based, and morphological operation-based cuts and fills.
       </p>
-      <a href="https://danzeng8.github.io/cse557/">
-        <h3>Bar, Line, and Pie Charts</h3>
-        <img src='images/assignment2.png' width='70%' height='70%>'
-      </a>
-
+      <hr>
+      <h2>Distance-based Cuts and Fills</h2>
+      <p>If the goal is to simplify topology while minimizing the geometric change in terms of the volume occupied by the shape, then a distance field can be used to compute cuts and fills. We used the <a href="http://barbic.usc.edu/vega/">Vega-FEM </a> library to compute our signed distance fields (SDF). Our <a href="https://github.com/danzeng8/TopoSimplifier">github code documentation</a> provides instructions on how to convert a shape (surface mesh) to the volumetric SDF used as input to our code.</p>
+      <h3>Hip Bone</h3>
+      <img src="images/fig10.png" width='90%'>
+      <p style="text-align: left;">Paper Fig. 10. (a): The Hip model with two handles (marked A and B). (b): Cut voxels (red) and fill voxels (blue) produced by topology-controlled inflation and deflation. (c): Selected fill voxels (filling in the small handle hole of A) and cut voxels (cutting open the narrow part of the handle body of B). (d): The modified shape. (e,f ): Results of TopoMender using a small parameter (e), which leaves the handle B in the shape, or using a large parameter (f ), which cuts open the wide handle body of A. (β: number of connected components, handles, and cavities; д: geometric cost)</p>
+      <p style="margin: auto; display: block; text-align: center;"><i>Command to reproduce this result:</i> TopoSimplifier --in examples/hip.tif --out hip_out.tif</p>
+      <hr>
+      <h3>Tree Model</h3>
+      <img src="images/fig11.png">
+      <p style="text-align: left;">Paper Fig. 11. (a): The Tree shape with 18 handles. (b): Input cut (red) and fill (blue)
+voxels. (c): Cut and fill voxels selected by our algorithm. (d): The modified
+shape. (e): Cut and fill voxels selected by the greedy strategy, which include
+a large group of fill voxels. (f ): Resulting shape of the greedy strategy. (β: number of connected components, handles, and cavities; д: geometric cost)</p>
+<p style="margin: auto; display: block; text-align: center;"><i>Command to reproduce this result:</i> TopoSimplifier --in examples/tree.tif --out tree_out.tif</p>
+      <h3>Human brain vessels</h3>
+      <img src="images/fig1.png" width='90%'>
+      <p style="text-align: left;">Paper Fig. 1. To simplify the topology of a 3D shape (a), performing cutting alone (b) or filling alone (c) results in excessive changes, such as removing large
+components (box C in (b)), creating long bridges to distant islands (box A in (c)) and large patches to fill in a handle (box B in (c)). Given a set of pre-computed
+cuts and fills, our method optimally selects a subset of them to maximally simplify topology while minimizing the impact on the geometry (d). (β: number of
+connected components, handles, and cavities; д: geometric cost)</p>
+<p style="margin: auto; display: block; text-align: center;"><i>Command to reproduce this result:</i>TopoSimplifier --in examples/vessels_distance.tif --out vessel_out.tif --K 0.115 --N -0.485</p>
+      <h3>Filigree</h3>
+      <div class="row">
+        <div class="column" >
+          <h4 style="margin: auto; display: block; text-align: center;">Input:</h4>
+          <img style="margin: auto; display: block;" src="images/filigreeIn2.png" width='60%'>
+          <h4 style="margin: auto; display: block; text-align: center;">Components: 1 Handles: 48 Cavities: 0</h4>
+        </div>
+       <div class="column" >
+        <h4 style="margin: auto; display: block; text-align: center;">Output:</h4>
+         <img style="margin: auto; display: block;" src="images/filigreeOut2.png" width='60%'>
+         <h4 style="margin: auto; display: block; text-align: center;">Components: 1 Handles: 0 Cavities: 0 </h4>
+       </div>
+       
+       
+        <p style="margin: auto; display: block; text-align: center;"><i>Command to reproduce this result:</i>TopoSimplifier --in examples/filigree.tif --out filigree.tif </p>
+     </div>
 
       <a href="https://danzeng8.github.io/assignment_5/">
         <h3>D3 ThemeRiver using world populations</h3>

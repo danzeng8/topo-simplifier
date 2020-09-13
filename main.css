@@ -206,6 +206,7 @@ header nav a {
 * {box-sizing: border-box;}
 body {font-family: Verdana, sans-serif;}
 img {vertical-align: middle;}
+h1 {font-size: 40px;}
 
 /* Slideshow container */
 .slideshow-container {
