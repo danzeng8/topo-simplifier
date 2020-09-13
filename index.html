@@ -4,7 +4,6 @@
   <title>To cut or to fill: A global optimization approach to topological simplification</title>
   <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
   <link href='main.css' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
  
@@ -19,118 +18,114 @@
        <h1 style="opacity: 1;">To cut or to fill: A global optimization approach to topological simplification</h1>
        <p>Dan Zeng, Erin Chambers, David Letscher, Tao Ju</p>
       <br>
-      <a href='#home'>Home</a>
       <a href='#paper'>Paper</a>
-      <a href='#software'>Software</a>
+      <a href="https://github.com/danzeng8/TopoSimplifier">Code</a>
       <a href='#examples'>Examples</a>
+      <a href='#faq'>Other Info / FAQ</a>
       <a href='#contact'>Contact</a>
     </nav>
   </header>
   <div id='all'>
-    <section id='home'>
-      <div class="row">
-        <div class="column" style="background-color:#C0C0FF;">
-          <p>This is the project website for our SIGGRAPH Asia 2020 paper on a global optimization approach for topological simplification.
-          </p>
-          <p>
-            <b>Title:</b>
-            To cut or to fill: a global optimization approach to topological simplification
-          </p>
-          <p>
-            <b>Authors: </b>Dan Zeng, Erin Chambers, David Letscher, Tao Ju
-          </p>
-          <p>
-          ACM Transactions on Graphics (Proc. ACM Siggraph Asia 2020), 39(6): No. 201 (Paper)
-          </p>
-          <p> <b>Abstract:</b> We present a novel algorithm for simplifying the topology of a 3D shape, which is characterized by the number of connected components, handles, and cavities. Existing methods either limit their modifications to be only cutting or only filling, or take a heuristic approach to decide where to cut or fill. We consider the problem of finding a globally optimal set of cuts and fills that achieve the simplest topology while minimizing geometric changes. We show that the problem can be formulated as graph labelling, and we solve it by a transformation to the Node-Weighted Steiner Tree problem. When tested on examples with varying levels of topological complexity, the algorithm shows notable improvement over existing simplification methods in both topological simplicity and geometric distortions.</p>
-        </div>
-        <div class="column" style="background-color:#FFC0C0;">
-          <div class="w3-container">
-            <div class="mySlides w3-display-container slideAlign">
-              <img src="images/hipS.png" style="height:450px; margin:auto; float: left;">
-              <h2 style ="display: inline; text-align: center; ">Given a 3D shape with topological features...</h2>
-              <button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
-            <button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
+    <section id='paper'>
+        <div class ="row" style="background-color: rgba(192, 192, 255, 0.8); opacity: 1; margin: 140px 100px 0 100px; height: 40%; border-radius: 20px; float: center;">
+          <div class="column" align="center">
+            <p>This is the project website for our SIGGRAPH Asia 2020 paper
+              <br><i>"To cut or to fill: a global optimization approach to topological simplification"</i>
+            </p>
+            <p>
+              <b>Authors: </b>Dan Zeng, Erin Chambers, David Letscher, Tao Ju
+            </p>
+            <p>
+            ACM Transactions on Graphics (Proc. ACM Siggraph Asia 2020), 39(6): No. 201 (Paper)
+            </p>
+            <p> <b>Abstract:</b> We present a novel algorithm for simplifying the topology of a 3D shape, which is characterized by the number of connected components, handles, and cavities. Existing methods either limit their modifications to be only cutting or only filling, or take a heuristic approach to decide where to cut or fill. We consider the problem of finding a globally optimal set of cuts and fills that achieve the simplest topology while minimizing geometric changes. We show that the problem can be formulated as graph labelling, and we solve it by a transformation to the Node-Weighted Steiner Tree problem. When tested on examples with varying levels of topological complexity, the algorithm shows notable improvement over existing simplification methods in both topological simplicity and geometric distortions.</p>
+            <a href="images\topological_simplification.pdf"><h3 style="text-align:center;">View/Download Paper</h3>
+            <img src="images\page1.png" style="display:block; margin: auto; width: 30%;">
+            </a>
+          </div>
+
+          <div class="column" >
+            <div class="slideshow-container" style="display: block; margin: auto;">
+
+              <div class="mySlides fade" >
+
+                <img src="images/hipS.png" style="width:70%; margin: auto; display: block;">
+                <div class="text">Given an input shape with topological features...</div>
+              </div>
+
+              <div class="mySlides fade">
+                <img src="images/hipAllCutsAndFills.png" style="width:70%; margin: auto; display: block;">
+                <div class="text">...we compute a set of cuts (red) and fills (blue) to simplify topology...</div>
+              </div>
+
+              <div class="mySlides fade">
+                <img src="images/hipSelectedCutsAndFills.png" style="width:70%; margin: auto; display: block;">
+                <div class="text">...select the subset which most simplifies topology while minimizing a geometric score...</div>
+              </div>
+
+               <div class="mySlides fade">
+                <img src="images/hipResult.png" style="width:70%; margin: auto; display: block;">
+                <div class="text">...to produce a simplified shape. </div>
+              </div>
+
+              <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+              <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+            </div>
+
+            <div style="text-align:center">
+              <div style="text-align:center">
+                <span class="dot" onclick="currentSlide(1)"></span> 
+                <span class="dot" onclick="currentSlide(2)"></span> 
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span> 
               </div>
             </div>
-            <div class="mySlides w3-display-container slideAlign">
-              <img src="images/hipAllCutsAndFills.png" style="height:450px; margin:auto; float: left;">
-              <h2 style ="display: inline; text-align: center; ">...We first compute a set of cuts and fills which simplify the topology...</h2>
-              <button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
-            <button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
-            </div>
-             <div class="mySlides w3-display-container slideAlign">
-              <img src="images/hipSelectedCutsAndFills.png" style="height:450px; margin:auto; float: left;">
-              <h2 style ="display: inline; padding-left: 20 px; text-align: center; ">...Then select the subset which most simplifies topology, while minimizing a geometric score. </h2>
-              <button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
-            <button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
-            </div>
-            <div class="mySlides w3-display-container slideAlign">
-              <img src="images/hipResult.png" style="height:450px; margin:auto; float: left;">
-              <h2 style ="display: inline; text-align: center; ">...Then select the subset which most simplifies topology, while minimizing a geometric score.</h2>
-              <button class="w3-button w3-display-left w3-black" onclick="plusDivs(-1)">&#10094;</button>
-            <button class="w3-button w3-display-right w3-black" onclick="plusDivs(1)">&#10095;</button>
-            </div>
-            
           </div>
+
+
           <script>
-            var myIndex = 0;
-            var slideIndex = 1;
-            carousel();
+          var slideIndex = 0;
+          showSlides(slideIndex);
 
-            function carousel() {
-              var i;
-              var x = document.getElementsByClassName("mySlides");
-              for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";  
-              }
-              myIndex++; slideIndex++;
-              if (myIndex > x.length) {myIndex = 1}    
-              x[myIndex-1].style.display = "block";  
-              setTimeout(carousel, 5000); // Change image every 2 seconds
+          function plusSlides(n) {
+            showSlides(slideIndex += n);
+          }
+
+          function currentSlide(n) {
+            showSlides(slideIndex = n);
+          }
+
+          function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("dot");
+            if (n > slides.length) {slideIndex = 1}    
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
             }
-
-            function plusDivs(n) {
-              showDivs(slideIndex += n);
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}  
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
             }
-
-            function showDivs(n) {
-              var i;
-              var x = document.getElementsByClassName("mySlides");
-              if (n > x.length) {slideIndex = 1}
-              if (n < 1) {slideIndex = x.length}
-              for (i = 0; i < x.length; i++) {
-                 x[i].style.display = "none";  
-              }
-              x[slideIndex-1].style.display = "block";  
-            }
-
+            slides[slideIndex-1].style.display = "block";  
+            dots[slideIndex-1].className += " active";
+            setTimeout(showSlides, 6000); 
+          }
           </script>
         </div>
        
+       
 
-      </div>
     </section>
-     
-    <section id='paper'>
-      <h2>Paper</h2>
-      <h3>Gorgon</h3>
-      <p>
-        I developed the interface for pathwalking in <a href="https://github.com/GorgonCryoEM">Gorgon</a>. Pathwalking is an algorithm which uses a traveling salesman heuristic to predict the likeliest path of a protein backbone. My interface runs the algorithm on a panel without using the command line, and allows the user to prevent or add bonds, set termini, move or delete atoms, and identify secondary structures after pathwalking.
-      </p>
-      <img src='images/gorgon.png' class='fullImage' width='800' height='494'>
-      <h3>Summer 2016 Research Poster</h3>
-      <p>
-      I presented my findings at the 2016 Fall Undergraduate Research Symposium.
-      </p>
-      <img src='images/gorgon_poster.jpg' width='100%' height='100%'>
-    </section>
-    <section id='software'>
-      <h2>Resume</h2>
-      <img src='images/danzengResume.jpg' width='70%' height='70%'>
-    </section>
-    <section id = 'examples'>
-      <h2>Visualizations</h2>
+     <br><br><br>
+    <section id = 'examples' style="background-color: rgba(255, 192, 192, 0.8); opacity: 1; margin: 0px 100px 0 100px; height: 40%; border-radius: 20px; float: center;">
+      <br>
+      <br>
+      <br>
+      <h2>Examples</h2>
       <p>
         Some interesting visualizations I did for my Information Visualization course
       </p>
@@ -139,21 +134,15 @@
         <img src='images/assignment2.png' width='70%' height='70%>'
       </a>
 
-      <a href="https://danzeng8.github.io/cse557_assignment3/">
-        <h3>Parallel coordinates</h3>
-        <img src='images/assignment3.png' width='70%' height='70%>'
-      </a>
-
-      <a href="https://danzeng8.github.io/cse557_assignment4/">
-        <h3>Election Map</h3>
-        <img src='images/assignment4.png' width='70%' height='71%>'
-      </a>
 
       <a href="https://danzeng8.github.io/assignment_5/">
         <h3>D3 ThemeRiver using world populations</h3>
         <img src='images/themeriver.png'>
       </a>
     </section>
+     <section id='faq'>
+      <h2>Other Info / Frequently Asked Questions</h2>
+     </section>
     <section id = 'contact'>
       <h2>Contact Information</h2>
     </section>
@@ -162,5 +151,6 @@
     <a href='mailto:danzeng@wustl.edu'>danzeng@wustl.edu</a>
   </div>
   <script src='js/main.js'></script>
+
 </body>
 </html>
