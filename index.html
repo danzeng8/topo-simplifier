@@ -299,13 +299,32 @@ for (i = 0; i < coll.length; i++) {
      <section id='faq' style="background-color: rgba(192, 192, 255, 0.8); opacity: 1; margin: 40px 100px 0 100px; border-radius: 20px; float: center;">
       <br>
       <h1>Frequently Asked Questions</h1>
-      <p>Coming Soon</p>
+      <p style="text-align: left;"><b>Q:</b>What is meant by <i>cutting</i> and <i>filling</i>?</p>
+      <p style="text-align: left;"><b>A:</b>Cutting means to subtract voxels from the shape, while filling means to add voxels to it. Figure 2 of our paper shows how either cutting or filling can be used to remove a topological feature:</p>
+      <img style="margin: auto; float: center; width: 25%;" src="images/cutfill.png"> 
+      <br>
+      <p style="text-align: left;"><b>Q:</b>Why do we choose a voxel-based representation?</p>
+      <p style="text-align: left;"><b>A:</b>There is nothing inherent to our algorithm which limits it to only working on voxels. In fact, our algorithm can theoretically work on any cell decomposition (for example tetrahedral meshes, octree grids, sparse volumes). In such cell complexes, the top-dimensional cells would be assignedin our algorithm to be either kernel, cut, fill, or neighborhoods nodes. We chose to use a voxel-based representation in our implementation for two reasons: (1) voxels are one of the most commonly used ways to discretize space, particularly in biomedical and plant imaging as well as in surface reconstruction methods. (2) Existing methods for creating candidate cuts and fills are all implemented in voxels. We are strongly interested in extending our approach to create cuts and fills on non-cubical cell complexes, which may offer better scalability and preservation of surface details.</p>
+      <br>
+      <p style="text-align: left;"><b>Q:</b>How much topological simplification does the algorithm perform?</p>
+      <p style="text-align: left;"><b>A:</b>By default, the provided implementation attempts to maximally simplify the topology to a shape with one connected component, no cavities, and no handles. This is done by simulating the kernel to be the single voxel with the highest value in the image volume, and the neighborhood to be a bounding box composed of the entire volume. As mentioned in the results section of our paper, this way to computing cuts and fills is the same as what previous works did. If desired, our implementation also provides a way to remove features which do not persist between two level sets (Kernel and Neighborhood). This may be a better setting to use in applications where some features want to be preserved, and other "noisy" ones want to be eliminated. The --K and --N parameters can be used to affect the level of simplification: the higher K is and the lower N is, the more simplification will be performed. This is because topological features which do no persist outside K and N will be removed. </p>
+      <br>
+
+      <p style="text-align: left;"><b>Q:</b>I only want to perform cutting, or only filling, to simplify the shape. How do I do this?</p>
+      <p style="text-align: left;"><b>A:</b>To only perform cutting, set the input shape threshold equal to the neighborhood threshold, as follows:</p>
+      <p style="text-align: center;">TopoSimplifier --in input.tif --out output.tif --N <i>X</i> --S <i>X</i> --K <i>G</i></p>
+      <p style="text-align: left;">Where <i>G</i> is greater than <i>X</i>. Conversely, if you only want to perform filling, set the input shape threshold equal to the kernel threshold, as follows: </p>
+      <p style="text-align: center;">TopoSimplifier --in input.tif --out output.tif --N <i>L</i> --S <i>X</i> --K <i>X</i></p>
+      <p style="text-align: left;">Where <i>L</i> is lower than <i>N</i></p>
+
+      <br>
+
 
      </section>
     <section id = 'contact' style="background-color: rgba(255, 192, 192, 0.8); opacity: 1; margin: 40px 100px 0 100px; border-radius: 20px; float: center;">
       <br>
       <h1>Contact Information</h1>
-      <p>This page was developed and is maintained by Dan Zeng (Home page coming soon), a PhD Candidate at Washington University in St. Louis.</p>
+      <p>This page was developed and is maintained by Dan Zeng (Home page coming soon), a PhD Candidate with the Department of Computer Science and Engineering at Washington University in St. Louis.</p>
       <h3>Email: <a href='mailto:danzeng8@gmail.com'>danzeng8@gmail.com</a></h3>
 
 
