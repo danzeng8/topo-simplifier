@@ -87,6 +87,15 @@ header a:hover {
   margin-top: 140px;
 }
 
+.authorNav {
+  display: inline-block;
+  margin: auto;
+  text-align: center;
+  font-size: 18px;
+  opacity: 1;
+  border: none;
+}
+
 /* Clear floats after the columns */
 .row:after {
   content: "";
