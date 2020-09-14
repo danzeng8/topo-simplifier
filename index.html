@@ -301,7 +301,7 @@ for (i = 0; i < coll.length; i++) {
       <h1>Frequently Asked Questions</h1>
       <p style="text-align: left;"><b>Q:</b>What is meant by <i>cutting</i> and <i>filling</i>?</p>
       <p style="text-align: left;"><b>A:</b>Cutting means to subtract voxels from the shape, while filling means to add voxels to it. Figure 2 of our paper shows how either cutting or filling can be used to remove a topological feature:</p>
-      <img style="margin: auto; float: center; width: 25%;" src="images/cutfill.png"> 
+      <img style="margin: auto; float: center; width: 25%;" src="images/cutfill.PNG"> 
       <br>
       <p style="text-align: left;"><b>Q:</b>Why do we choose a voxel-based representation?</p>
       <p style="text-align: left;"><b>A:</b>There is nothing inherent to our algorithm which limits it to only working on voxels. In fact, our algorithm can theoretically work on any cell decomposition (for example tetrahedral meshes, octree grids, sparse volumes). In such cell complexes, the top-dimensional cells would be assignedin our algorithm to be either kernel, cut, fill, or neighborhoods nodes. We chose to use a voxel-based representation in our implementation for two reasons: (1) voxels are one of the most commonly used ways to discretize space, particularly in biomedical and plant imaging as well as in surface reconstruction methods. (2) Existing methods for creating candidate cuts and fills are all implemented in voxels. We are strongly interested in extending our approach to create cuts and fills on non-cubical cell complexes, which may offer better scalability and preservation of surface details.</p>
