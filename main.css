@@ -197,11 +197,47 @@ header nav a {
   border-radius: 8px 0 0 8px;
 }
 
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
+
+
+.collapsible {
+  background-color: rgba(150, 150, 255, 1);
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: solid 2px #000;
+  text-align: left;
+  outline: none;
+  font-size: 25px;
+  margin-top: 20 px;
+  margin-bottom: 20 px;
 }
 
+.active, .collapsible:hover {
+  background-color: rgba(128, 128, 255, 1);
+}
+
+.collapsible:after {
+  content: '\002B';
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+  background-color: rgba(150, 150, 255, 1);
+}
+
+.active:after {
+  content: "\2212";
+  background-color: rgba(150, 150, 255, 1);
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: rgba(192, 192, 255, 1);
+}
 
 * {box-sizing: border-box;}
 body {font-family: Verdana, sans-serif;}
@@ -236,6 +272,16 @@ h1 {font-size: 40px;}
 
 /* The dots/bullets/indicators */
 .dot {
+  height: 20px;
+  width: 20px;
+  margin: 20px 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.dotactive {
   height: 15px;
   width: 15px;
   margin: 20px 2px;
@@ -245,7 +291,8 @@ h1 {font-size: 40px;}
   transition: background-color 0.6s ease;
 }
 
-.active {
+
+.active1,.dotactive:hover {
   background-color: #717171;
 }
 

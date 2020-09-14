@@ -73,10 +73,10 @@
 
             <div style="text-align:center">
               <div style="text-align:center">
-                <span class="dot" onclick="currentSlide(1)"></span> 
-                <span class="dot" onclick="currentSlide(2)"></span> 
-                <span class="dot" onclick="currentSlide(3)"></span>
-                <span class="dot" onclick="currentSlide(4)"></span> 
+                <span class="dotactive" onclick="currentSlide(1)"></span> 
+                <span class="dotactive" onclick="currentSlide(2)"></span> 
+                <span class="dotactive" onclick="currentSlide(3)"></span>
+                <span class="dotactive" onclick="currentSlide(4)"></span> 
               </div>
             </div>
           </div>
@@ -86,20 +86,41 @@
           var slideIndex = 0;
           showSlides();
 
+          // Thumbnail image controls
+function currentSlide(n) {
+  slideIndex = n;
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dotactive");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active1 ", "");
+
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active1 ";
+}
+
           function showSlides() {
             var i;
             var slides = document.getElementsByClassName("mySlides");
-            var dots = document.getElementsByClassName("dot");
+            var dots = document.getElementsByClassName("dotactive");
             for (i = 0; i < slides.length; i++) {
               slides[i].style.display = "none";  
             }
             slideIndex++;
             if (slideIndex > slides.length) {slideIndex = 1}    
             for (i = 0; i < dots.length; i++) {
-              dots[i].className = dots[i].className.replace(" active", "");
+              dots[i].className = dots[i].className.replace(" active1 ", "");
+
             }
             slides[slideIndex-1].style.display = "block";  
-            dots[slideIndex-1].className += " active";
+            dots[slideIndex-1].className += " active1 ";
+
             setTimeout(showSlides, 6000); // Change image every 2 seconds
           }
           </script>
@@ -109,35 +130,69 @@
 
     </section>
      <br><br><br>
-    <section id = 'examples' style="background-color: rgba(255, 192, 192, 0.8); opacity: 1; margin: 0px 100px 0 100px; height: 40%; border-radius: 20px; float: center;">
+    <section id = 'examples' style="background-color: rgba(255, 192, 192, 0.8); opacity: 1; margin: 0px 100px 0 100px; border-radius: 20px; float: center;">
       <br>
       <h1>Examples</h1>
       <p style="text-align: left;">
-        Provided here are the examples used in figures of the paper, as well as a few others. We have applied our algorithm to simplify shapes coming from a variety of domains in both geometry modeling and biomedical and plant imaging. In each case the topology of the input shape and simplified shape are provided, as well as the command needed to reproduce the result (see <a href="https://github.com/danzeng8/TopoSimplifier">code</a>). Our algorithm is flexible to the types of cuts and fills used for simplification: we demonstrate here distance-based, intensity-based, and morphological operation-based cuts and fills.
+        Provided here are the examples used in the figures of the paper, as well as a few others. We have applied our algorithm to simplify shapes coming from a variety of domains in both geometry modeling and biomedical and plant imaging. In each case, we provide:
+        <ul style="text-align: left;">
+        <li>The topology of the input shape and simplified shape. </li>
+        <li>Input and output files for each result.</li>
+        <li>The command needed to reproduce the result (see <a href="https://github.com/danzeng8/TopoSimplifier">code</a>).</li>
+        </ul>
+         Our algorithm is flexible to the types of cuts and fills used for simplification: we demonstrate here distance-based, intensity-based, and morphological operation-based cuts and fills.
       </p>
-      <hr>
-      <h2>Distance-based Cuts and Fills</h2>
+      <h2>Using distance-based cuts and fills</h2>
       <p>If the goal is to simplify topology while minimizing the geometric change in terms of the volume occupied by the shape, then a distance field can be used to compute cuts and fills. We used the <a href="http://barbic.usc.edu/vega/">Vega-FEM </a> library to compute our signed distance fields (SDF). Our <a href="https://github.com/danzeng8/TopoSimplifier">github code documentation</a> provides instructions on how to convert a shape (surface mesh) to the volumetric SDF used as input to our code.</p>
-      <h3>Hip Bone</h3>
-      <img src="images/fig10.png" width='90%'>
-      <p style="text-align: left;">Paper Fig. 10. (a): The Hip model with two handles (marked A and B). (b): Cut voxels (red) and fill voxels (blue) produced by topology-controlled inflation and deflation. (c): Selected fill voxels (filling in the small handle hole of A) and cut voxels (cutting open the narrow part of the handle body of B). (d): The modified shape. (e,f ): Results of TopoMender using a small parameter (e), which leaves the handle B in the shape, or using a large parameter (f ), which cuts open the wide handle body of A. (β: number of connected components, handles, and cavities; д: geometric cost)</p>
-      <p style="margin: auto; display: block; text-align: center;"><i>Command to reproduce this result:</i> TopoSimplifier --in examples/hip.tif --out hip_out.tif</p>
-      <hr>
-      <h3>Tree Model</h3>
+      <button type="button" class="collapsible">Hip Bone (Click to Expand)</button>
+      <div class="content">
+        <img src="images/fig10.png" width='90%'>
+        <p style="text-align: left;">Paper Fig. 10. (a): The Hip model with two handles (marked A and B). (b): Cut voxels (red) and fill voxels (blue) produced by topology-controlled inflation and deflation. (c): Selected fill voxels (filling in the small handle hole of A) and cut voxels (cutting open the narrow part of the handle body of B). (d): The modified shape. (e,f ): Results of TopoMender using a small parameter (e), which leaves the handle B in the shape, or using a large parameter (f ), which cuts open the wide handle body of A. (β: number of connected components, handles, and cavities; д: geometric cost)</p>
+        <p style="margin: auto; display: block; text-align: center;"><i>Command to reproduce this result:</i> TopoSimplifier --in hip.tif --out hip_out.tif</p>
+      </div>
+      <button type="button" class="collapsible">Tree Model</button>
+      <div class="content">
       <img src="images/fig11.png">
       <p style="text-align: left;">Paper Fig. 11. (a): The Tree shape with 18 handles. (b): Input cut (red) and fill (blue)
 voxels. (c): Cut and fill voxels selected by our algorithm. (d): The modified
 shape. (e): Cut and fill voxels selected by the greedy strategy, which include
 a large group of fill voxels. (f ): Resulting shape of the greedy strategy. (β: number of connected components, handles, and cavities; д: geometric cost)</p>
+<img src="images/fig12.png">
+<p style="text-align: left;">
+Fig. 12. Comparing result of our method (c) and MendIT (b) on a region
+of the Tree with two handles (a). While MendIT fills a handle hole (A) and
+makes a long cut (B) on the handle body, our method makes two short cuts
+(C,D) without filling the handle hole.
+</p>
+
+
 <p style="margin: auto; display: block; text-align: center;"><i>Command to reproduce this result:</i> TopoSimplifier --in examples/tree.tif --out tree_out.tif</p>
-      <h3>Human brain vessels</h3>
+</div>
+      <button type="button" class="collapsible">Human brain vessels (segmented from Angiography)</button>
+      <div class="content">
       <img src="images/fig1.png" width='90%'>
       <p style="text-align: left;">Paper Fig. 1. To simplify the topology of a 3D shape (a), performing cutting alone (b) or filling alone (c) results in excessive changes, such as removing large
 components (box C in (b)), creating long bridges to distant islands (box A in (c)) and large patches to fill in a handle (box B in (c)). Given a set of pre-computed
 cuts and fills, our method optimally selects a subset of them to maximally simplify topology while minimizing the impact on the geometry (d). (β: number of
 connected components, handles, and cavities; д: geometric cost)</p>
-<p style="margin: auto; display: block; text-align: center;"><i>Command to reproduce this result:</i>TopoSimplifier --in examples/vessels_distance.tif --out vessel_out.tif --K 0.115 --N -0.485</p>
-      <h3>Filigree</h3>
+<p style="margin: auto; display: block; text-align: center;"><i>Command to reproduce this result:</i>TopoSimplifier --in vessels_distance.tif --out vessel_out.tif --K 0.115 --N -0.485</p>
+</div>
+
+<button type="button" class="collapsible">Human Heart (segmented from X-ray CT scan)</button>
+<div class="content">
+<img src="images/fig14.png" width='50%'>
+<p style="text-align: left;">Paper Fig. 14. Comparing the result of our algorithm (b), the greedy labelling
+strategy (c), and MendIT (d) on the Heart example. Both our method and
+MendIT fully simplify the topology, while the greedy strategy leaves 4
+handles in the shape. The inserts show a region where both the greedy
+strategy and MendIT make excessive geometric changes. (β: number of
+connected components, handles, and cavities; д: geometric cost)</p>
+<p style="margin: auto; display: block; text-align: center;"><i>Command to reproduce this result:</i> TopoSimplifier --in heart_distance.tif  --out heart_distance_out.tif</p>
+
+</div>
+
+      <button type="button" class="collapsible">Filigree</button>
+       <div class="content">
       <div class="row">
         <div class="column" >
           <h4 style="margin: auto; display: block; text-align: center;">Input:</h4>
@@ -151,19 +206,100 @@ connected components, handles, and cavities; д: geometric cost)</p>
        </div>
        
        
-        <p style="margin: auto; display: block; text-align: center;"><i>Command to reproduce this result:</i>TopoSimplifier --in examples/filigree.tif --out filigree.tif </p>
+        <p style="margin: auto; display: block; text-align: center;"><i>Command to reproduce this result:</i>TopoSimplifier --in filigree.tif --out filigree.tif </p>
      </div>
+      </div>
+<br>
+<h2>Using intensity-based cuts and fills</h2>
+<p>If the shape has some associated image data, for example if it was segmented from a biomedical / plant image volume, then the intensities of the image volume can be used to generate cuts and fills. When an underlying image volume is available, this will often be the preferred way to compute potential simplifications, rather than using distance-based cuts and fills.</p>
+<button type="button" class="collapsible">Human brain vessels (segmented from Angiography)</button>
+<div class="content">
+<p>This is the same input shape as the human brain vessel in the distance-based example, but now the image intensity is used to generate the cuts and fills.</p>p>
+<img src="images/fig15.png" width='50%'>
 
-      <a href="https://danzeng8.github.io/assignment_5/">
-        <h3>D3 ThemeRiver using world populations</h3>
-        <img src='images/themeriver.png'>
-      </a>
+<p style="text-align: left;">Paper Fig. 15. The shape after subtracting intensity-aware cut voxels (a) or adding
+intensity-aware fill voxels (b), and after running our algorithm with the
+intensity-aware cuts and fills (c) or distance-based cuts and fills (d). The
+inserts in (a,b) show the inner and outer seeds used for inflation and deflation.
+The inserts in (c,d) examine a region where the same handle is
+removed differently in the two results, either separating the two vessels (c)
+or breaking a vessel in the middle (d). (β: number of
+connected components, handles, and cavities; д: geometric cost)</p>
+<p style="margin: auto; display: block; text-align: center;"><i>Command to reproduce this result:</i>TopoSimplifier --in vessels_intensity/ --out vessels_intensity_out/ --K 121 --S 58 --N 50 </p>
+</div>
+
+<button type="button" class="collapsible">Corn Root (segmented from X-ray Computed Tomography Scan): Highly Complex</button>
+<div class="content">
+<img src="images/fig17.png" width='90%'>
+
+<p style="text-align: left;">Paper Fig. 17. (a): A highly complex iso-surface from a CT scan of a corn root. (b,c): Results of intensity-aware cutting and filling. (d): Our result. Box A highlights a
+handle that is only removed by cutting (which separates the two root branches), and box B highlights islands that are only connected by filling. Our method
+resolves both features. (β: number of
+connected components, handles, and cavities; д: geometric cost)</p>
+<img src="images/fig18.png" width='70%'>
+<p style="text-align: left;">Fig. 18. Cut and fill voxels (a) and those selected by our algorithm (b) on
+the Root. The inserts highlight a cluster of cut and fill voxels in a region
+with complex topology.</p>
+<p style="margin: auto; display: block; text-align: center;"><i>Command to reproduce this result:</i>TopoSimplifier --in root/ --out root_out/ --K 19 --S 15 --N 11 </p>
+</div>
+
+<button type="button" class="collapsible">Sorghum Panicle (segmented from X-ray Computed Tomography Scan): Highly Complex</button>
+<div class="content">
+<img src="images/fig16.png" width='90%'>
+
+<p style="text-align: left;">Paper Fig. 16. (a): An iso-surface from a CT scan of a sorghum panicle. (b,c): Results of intensity-aware cutting and filling (cut/fill voxels shown on the left). (d): Our
+result. Box A highlights a few islands that are only connected by filling, and box B highlights two handles that are only removed by cutting. Our method
+resolves both features. (β: number of
+connected components, handles, and cavities; д: geometric cost)</p>
+<p style="margin: auto; display: block; text-align: center;"><i>Command to reproduce this result:</i>TopoSimplifier --in sorghum/  --out sorghumOut/ --K 95 --S 75 --N 55 </p>
+</div>
+
+<button type="button" class="collapsible">COVID-19 Protein (SARS-Cov-2 Spike Protein) from Cryo-EM imaging</button>
+<div class="content">
+<img src="images/covidResult.png" width='90%'>
+
+<p style="text-align: left;">Our algorithm is able to cut the false self-intersection of the alpha-helix (A) and connects the beta strands (B), allowing for the tracing of the protein's backbone structure.</p>
+<p style="margin: auto; display: block; text-align: center;"><i>Command to reproduce this result:</i>TopoSimplifier --in covid/ --out covid_out/ --K 174 --S 112 --N 92</p>
+</div>
+<br>
+<h2>Using morphological operation-based cuts and fills</h2>
+Morphological <i>opening</i> and <i>closing</i> are often used in image processing for noise removal. However, naive opening and closing may increase the number of topological features. In our work, we treat the cuts and fills created by opening and closing as potential topological changes to the shape, and only perform those which globally minimize the shape's topology. We apply this to the human heart example below.
+<br>
+<button type="button" class="collapsible">Human Heart (Segmented from X-ray CT Scan): Morphological Opening / Closing based cuts and fills</button>
+<div class="content">
+<img src="images/fig19.png" width='90%'>
+
+<p style="text-align: left;">Paper Fig. 19. (a): A heart segmentation. (b): Result of opening (bottom), which contains several new islands (box A), and the corresponding cut voxels (top). (c):
+Result of closing (bottom), which merges nearby vessels (box B) and thereby creating new handles, and the corresponding fill voxels (top). (d): Voxels selected
+by our algorithm (top) and the modified shape (bottom). The insert examines a handle that is removed in all three methods.</p>
+<p style="margin: auto; display: block; text-align: center;"><i>Command to reproduce this result:</i>TopoSimplifier --in heart_intensity/ --out heartOut/ --S 168 --close 3 --open 2</p>
+</div>
+
+
+      <script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+</script>
     </section>
-     <section id='faq'>
-      <h2>Other Info / Frequently Asked Questions</h2>
+     <section id='faq' style="background-color: rgba(255, 192, 192, 0.8); opacity: 1; margin: 0px 100px 0 100px; border-radius: 20px; float: center;">
+      <h2>Frequently Asked Questions</h2>
+
      </section>
     <section id = 'contact'>
       <h2>Contact Information</h2>
+
     </section>
   </div>
   <div id='footer'>
