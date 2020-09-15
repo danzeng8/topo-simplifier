@@ -96,6 +96,16 @@ header a:hover {
   border: none;
 }
 
+#bodyA {
+  color: pink;
+  text-decoration: none;
+}
+
+#bodyA {
+color: pink;
+  text-decoration: underline;
+  }
+
 /* Clear floats after the columns */
 .row:after {
   content: "";
