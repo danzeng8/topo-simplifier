@@ -155,6 +155,8 @@ function currentSlide(n) {
         <img src="images/fig10.PNG" width='90%'>
         <p style="text-align: left;">Paper Fig. 10. (a): The Hip model with two handles (marked A and B). (b): Cut voxels (red) and fill voxels (blue) produced by topology-controlled inflation and deflation. (c): Selected fill voxels (filling in the small handle hole of A) and cut voxels (cutting open the narrow part of the handle body of B). (d): The modified shape. (e,f ): Results of TopoMender using a small parameter (e), which leaves the handle B in the shape, or using a large parameter (f ), which cuts open the wide handle body of A. (β: number of connected components, handles, and cavities; д: geometric cost)</p>
         <p style="margin: auto; display: block; text-align: center;"><i>Command to reproduce this result:</i> TopoSimplifier --in examples_in/hip_lo.tif --out examples_out/hip_lo_out.tif</p>
+        <br>
+        <p style="margin: auto; display: block; text-align: center;">For visualization of output in UCSF Chimera: Set iso-surface threshold to 0 in Volume Viewer.</p>
       </div>
       <button type="button" class="collapsible">Tree Model</button>
       <div class="content">
@@ -173,6 +175,8 @@ makes a long cut (B) on the handle body, our method makes two short cuts
 
 
 <p style="margin: auto; display: block; text-align: center;"><i>Command to reproduce this result:</i> TopoSimplifier --in examples_in/tree.tif --out examples_out/tree_out.tif</p>
+<br>
+        <p style="margin: auto; display: block; text-align: center;">For visualization of output in UCSF Chimera: Set iso-surface threshold to 0 in Volume Viewer.</p>
 </div>
       <button type="button" class="collapsible">Human brain vessels (segmented from Angiography)</button>
       <div class="content">
@@ -182,6 +186,8 @@ components (box C in (b)), creating long bridges to distant islands (box A in (c
 cuts and fills, our method optimally selects a subset of them to maximally simplify topology while minimizing the impact on the geometry (d). (β: number of
 connected components, handles, and cavities; д: geometric cost)</p>
 <p style="margin: auto; display: block; text-align: center;"><i>Command to reproduce this result:</i>TopoSimplifier --in examples_in/vessels_distance.tif --out examples_out/vessel_out.tif --K 0.115 --N -0.485</p>
+<br>
+        <p style="margin: auto; display: block; text-align: center;">For visualization of output in UCSF Chimera: Set iso-surface threshold to 0 in Volume Viewer.</p>
 </div>
 
 <button type="button" class="collapsible">Human Heart (segmented from X-ray CT scan)</button>
@@ -194,7 +200,8 @@ handles in the shape. The inserts show a region where both the greedy
 strategy and MendIT make excessive geometric changes. (β: number of
 connected components, handles, and cavities; д: geometric cost)</p>
 <p style="margin: auto; display: block; text-align: center;"><i>Command to reproduce this result:</i> TopoSimplifier --in examples_in/heart_distance.tif  --out examples_out/heart_distance_out.tif</p>
-
+<br>
+<p style="margin: auto; display: block; text-align: center;">For visualization of output in UCSF Chimera: Set iso-surface threshold to 0 in Volume Viewer.</p>
 </div>
 
       <button type="button" class="collapsible">Filigree</button>
@@ -213,6 +220,8 @@ connected components, handles, and cavities; д: geometric cost)</p>
        
        
         <p style="margin: auto; display: block; text-align: center;"><i>Command to reproduce this result:</i>TopoSimplifier --in examples_in/filigree.tif --out examples_out/filigree.tif </p>
+        <br>
+        <p style="margin: auto; display: block; text-align: center;">For visualization of output in UCSF Chimera: Set iso-surface threshold to 0 in Volume Viewer.</p>
      </div>
       </div>
 <br>
@@ -232,6 +241,9 @@ removed differently in the two results, either separating the two vessels (c)
 or breaking a vessel in the middle (d). (β: number of
 connected components, handles, and cavities; д: geometric cost)</p>
 <p style="margin: auto; display: block; text-align: center;"><i>Command to reproduce this result:</i>TopoSimplifier --in examples_in/vessels_intensity/ --out examples_out/vessels_intensity_out/ --K 121 --S 58 --N 50 </p>
+
+<br>
+        <p style="margin: auto; display: block; text-align: center;">For visualization of output in UCSF Chimera: Set iso-surface threshold to 58 in Volume Viewer.</p>
 </div>
 
 <button type="button" class="collapsible">Corn Root (segmented from X-ray Computed Tomography Scan): Highly Complex</button>
@@ -247,6 +259,8 @@ connected components, handles, and cavities; д: geometric cost)</p>
 the Root. The inserts highlight a cluster of cut and fill voxels in a region
 with complex topology.</p>
 <p style="margin: auto; display: block; text-align: center;"><i>Command to reproduce this result:</i>TopoSimplifier --in examples_in/root/ --out examples_out/root_out/ --K 19 --S 15 --N 11 </p>
+<br>
+        <p style="margin: auto; display: block; text-align: center;">For visualization of output in UCSF Chimera: Set iso-surface threshold to 15 in Volume Viewer.</p>
 </div>
 
 <button type="button" class="collapsible">Sorghum Panicle (segmented from X-ray Computed Tomography Scan): Highly Complex</button>
@@ -258,6 +272,8 @@ result. Box A highlights a few islands that are only connected by filling, and b
 resolves both features. (β: number of
 connected components, handles, and cavities; д: geometric cost)</p>
 <p style="margin: auto; display: block; text-align: center;"><i>Command to reproduce this result:</i>TopoSimplifier --in examples_in/sorghum/  --out examples_out/sorghum_out/ --K 95 --S 75 --N 55 </p>
+<br>
+        <p style="margin: auto; display: block; text-align: center;">For visualization of output in UCSF Chimera: Set iso-surface threshold to 75 in Volume Viewer.</p>
 </div>
 
 <button type="button" class="collapsible">COVID-19 Protein (SARS-Cov-2 Spike Protein) from Cryo-EM imaging</button>
@@ -266,6 +282,8 @@ connected components, handles, and cavities; д: geometric cost)</p>
 
 <p style="text-align: left;">Our algorithm is able to cut the false self-intersection of the alpha-helix (A) and connects the beta strands (B), allowing for the tracing of the protein's backbone structure.</p>
 <p style="margin: auto; display: block; text-align: center;"><i>Command to reproduce this result:</i>TopoSimplifier --in examples_in/covid/ --out examples_out/covid_out/ --K 174 --S 112 --N 92</p>
+<br>
+        <p style="margin: auto; display: block; text-align: center;">For visualization of output in UCSF Chimera: Set iso-surface threshold to 112 in Volume Viewer.</p>
 </div>
 <br>
 <h2>Using morphological operation-based cuts and fills</h2>
@@ -279,6 +297,8 @@ Morphological <i>opening</i> and <i>closing</i> are often used in image processi
 Result of closing (bottom), which merges nearby vessels (box B) and thereby creating new handles, and the corresponding fill voxels (top). (d): Voxels selected
 by our algorithm (top) and the modified shape (bottom). The insert examines a handle that is removed in all three methods.</p>
 <p style="margin: auto; display: block; text-align: center;"><i>Command to reproduce this result:</i>TopoSimplifier --in examples_in/heart_intensity/ --out examples_out/heartOut/ --S 168 --close 3 --open 2</p>
+<br>
+        <p style="margin: auto; display: block; text-align: center;">For visualization of output in UCSF Chimera: Set iso-surface threshold to 168 in Volume Viewer.</p>
 </div>
 
 
