@@ -169,7 +169,7 @@ function currentSlide(n) {
          In each example, we provide the topology of the input shape and simplified shape, and the command needed to reproduce the result (see <a href="https://github.com/danzeng8/TopoSimplifier">code</a>). Feel free to download the examples and follow along. 
          Our algorithm is flexible to the types of cuts and fills used for simplification: we demonstrate here intensity-based, distance-based, and morphological operation-based cuts and fills.
       </p>
-      <h2>Using intensity-based cuts and fills</h2>
+      <h3>Using intensity-based cuts and fills</h3>
 <p>If the shape has some associated image data, for example if it was segmented from a biomedical / plant image volume, then the intensities of the image volume can be used to generate cuts and fills. When an underlying image volume is available, this will often be the preferred way to compute potential simplifications, rather than using distance-based cuts and fills in the section after this one ("Using distance-based cuts and fills").</p>
 <button type="button" class="collapsible">Human brain vessels (segmented from Angiography)</button>
 <div class="content">
@@ -230,7 +230,7 @@ connected components, handles, and cavities; д: geometric cost)</p>
         <p style="margin: auto; display: block; text-align: center;">For visualization of output in UCSF Chimera: Set iso-surface threshold to 112 in Volume Viewer.</p>
 </div>
 <br>
-      <h2>Using distance-based cuts and fills</h2>
+      <h3>Using distance-based cuts and fills</h3>
       <p>If the goal is to simplify topology while minimizing the geometric change in terms of the volume occupied by the shape, then a distance field can be used to compute cuts and fills. We used the <a href="http://barbic.usc.edu/vega/">Vega-FEM </a> library to compute our signed distance fields (SDF). Our <a href="https://github.com/danzeng8/TopoSimplifier">github code documentation</a> provides instructions on how to convert a shape (surface mesh) to the volumetric SDF used as input to our code.</p>
       <button type="button" class="collapsible">Hip Bone (Click to Expand)</button>
       <div class="content">
@@ -308,7 +308,7 @@ connected components, handles, and cavities; д: geometric cost)</p>
       </div>
 
 <br>
-<h2>Using morphological operation-based cuts and fills</h2>
+<h3>Using morphological operation-based cuts and fills</h3>
 Morphological <i>opening</i> and <i>closing</i> are often used in image processing for noise removal. However, naive opening and closing may increase the number of topological features. In our work, we treat the cuts and fills created by opening and closing as potential topological changes to the shape, and only perform those which globally minimize the shape's topology. We apply this to the human heart example below.
 <br>
 <button type="button" class="collapsible">Human Heart (Segmented from X-ray CT Scan): Morphological Opening / Closing based cuts and fills</button>
